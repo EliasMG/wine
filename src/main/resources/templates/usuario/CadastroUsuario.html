@@ -20,34 +20,37 @@
 		</div>
 
 		<div class="container-fluid">
-			<form method="POST" th:object="${usuario}">
+			<form method="POST" th:object="${usuario}" class="form-vertical  js-form-loading" th:action="@{/usuarios/novo}">
+				<div layout:include="mensagens/MensagemErro"></div>
+				<input type="hidden" th:field="*{codigo}"/>
+				
 				<div class="row">
-					<div class="form-group  col-sm-12 bw-required">
-						<label for="nome">Nome</label> 
+					<div class="form-group  col-sm-12 wn-required" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+						<label for="nome" class="control-label">Nome</label> 
 						<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="form-group  col-sm-6 bw-required">
-						<label for="email">E-mail</label> 
+					<div class="form-group  col-sm-6 wn-required" th:classappend="${#fields.hasErrors('email')} ? has-error">
+						<label for="email" class="control-label">E-mail</label> 
 						<input type="text" class="form-control" id="email" th:field="*{email}"/>
 					</div>
-					<div class="form-group  col-sm-3">
-						<label for="dataNascimento">Data de nascimento</label> 
+					<div class="form-group  col-sm-3 wn-required" th:classappend="${#fields.hasErrors('dataNascimento')} ? has-error">
+						<label for="dataNascimento" class="control-label">Data de nascimento</label> 
 						<input type="text" class="form-control" id="dataNascimento" th:field="*{dataNascimento}"/>
 					</div>
 				</div>
 
 				<div class="row">
-					<div class="form-group  col-sm-3 bw-required">
-						<label for="senha">Senha</label>
-						<input type="password" class="form-control" id="senha" />
+					<div class="form-group  col-sm-3" th:classappend="${#fields.hasErrors('senha')} ? has-error">
+						<label for="senha" class="control-label">Senha</label>
+						<input type="password" class="form-control" id="senha" th:firld="*{senha}"/>
 					</div>
 
-					<div class="form-group  col-sm-3 bw-required">
-						<label for="confirmacaoSenha">Confirmação de senha</label>
-						<input type="password" class="form-control" id="confirmacaoSenha" />
+					<div class="form-group  col-sm-3" th:classappend="${#fields.hasErrors('confirmacaoSenha')} ? has-error">
+						<label for="confirmacaoSenha" class="control-label">Confirmação de senha</label>
+						<input type="password" class="form-control" id="confirmacaoSenha" th:field="*{confirmacaoSenha}"/>
 					</div>
 
 					<div class="form-group  col-sm-3">
@@ -62,7 +65,7 @@
 				</div>
 
 				<div class="row">
-					<div class="form-group  col-sm-6">
+					<div class="form-group  col-sm-6 wn-required" th:classappend="${#fields.hasErrors('nome')} ? has-error">
 						<label class="control-label">Grupos</label>
 						<div>
 							<div class="checkbox  checkbox-inline">

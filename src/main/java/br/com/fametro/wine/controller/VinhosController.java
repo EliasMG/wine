@@ -74,7 +74,7 @@ public class VinhosController {
 	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
 		vinhos.delete(codigo);
 		
-		attributes.addFlashAttribute("mensagem", "Título excluído com sucesso!");
+		attributes.addFlashAttribute("mensagem", "Vinho excluído com sucesso!");
 		return "redirect:/vinhos";
 	}
 	

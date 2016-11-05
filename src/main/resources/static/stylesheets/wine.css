@@ -1,3 +1,14 @@
+/*
+######################
+# UTILIDADES
+######################
+*/
+
+.wn-required > .control-label:after {
+	content: "*";
+}
+
+
 /* Upload - http://getuikit.com/docs/upload.html */
 .wn-upload {
 	padding: 15px;

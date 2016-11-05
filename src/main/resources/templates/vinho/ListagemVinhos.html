@@ -11,8 +11,6 @@
 <body>
 <section layout:fragment="conteudo">
 
-	<div layout:include="vinho/MensagemGeral"></div>
-
 	<div class="page-header">
 		<div class="container-fluid">
 			<div class="row">
@@ -21,6 +19,7 @@
 						Listagem de vinhos
 					</h1>
 				</div>
+			
 			
 				<div class="col-xs-2">
 					<div class="aw-page-header-controls">
@@ -34,6 +33,9 @@
 	</div>
 
 	<div class="container-fluid">
+	
+	<div layout:include="mensagens/MensagemSucesso"></div>
+	
 		<div class="table-responsive">
 			<table id="tabela-produtos" class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 				<thead class="aw-table-header-solid">

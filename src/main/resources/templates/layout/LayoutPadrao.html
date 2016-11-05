@@ -62,7 +62,7 @@
 	    	<nav class="aw-menu  js-menu">
 	      		<ul class="aw-menu__list">
 	        		<li class="aw-menu__item">
-          			<a th:href="@{/vinhos/novo}">
+          			<a th:href="@{/vinhos/novo}" sec:authorize-url="/vinhos/novo">
           				<i class="fa  fa-fw  fa-plus-circle"></i>
           				<span>Novo vinho</span>
           			</a>

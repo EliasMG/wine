@@ -21,19 +21,11 @@
 
 	<div class="container-fluid">
 	
-		<div layout:include="vinho/MensagemGeral"></div>
+		<div layout:include="mensagens/MensagemSucesso"></div>
+		
 	
 		<form method="POST" th:object="${vinho}" class="form-vertical  js-form-loading" th:action="@{/vinhos/novo}">
-			<div class="alert  alert-danger  alert-dismissible" role="alert" th:if="${#fields.hasAnyErrors()}">
-				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-				<th:block th:each="erro : ${#fields.detailedErrors()}">
-					<div>
-						<i class="fa  fa-exclamation-circle"></i> 
-						<span th:text="${erro.message}">Já existe um produto com o nome informado.</span>
-					</div>
-				</th:block>
-			</div>
-			
+			<div layout:include="mensagens/MensagemErro"></div>
 			<input type="hidden" th:field="*{codigo}"/>
 			
 			<div class="form-group" th:classappend="${#fields.hasErrors('nome')} ? has-error">
