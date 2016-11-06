@@ -8,5 +8,8 @@ public class WineApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(WineApplication.class, args);
+		
+		//BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+		//System.out.println(encoder.encode("admin"));
 	}
 }

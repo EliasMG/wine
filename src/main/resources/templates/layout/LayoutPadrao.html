@@ -13,7 +13,11 @@
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/vendors.min.css}"/>
 	<link rel="stylesheet" type="text/css" th:href="@{/layout/stylesheets/algaworks.min.css}"/>
 	
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/bootstrap-datepicker.standalone.min.css}"/>
+	
 	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/wine.css}"/>
+	
+	<link rel="shortcut icon" th:hef="@{/images/favicon.png}"/>
 	
 	<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 	<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -88,8 +92,14 @@
 	</footer>
 </div>
 <script th:src="@{/layout/javascripts/vendors.min.js}"></script>
+
+<script th:src="@{/javascripts/wine.js}"></script>
+<script th:src="@{/javascripts/vendors/bootstrap-datepicker.min.js}"></script>
+<script th:src="@{/javascripts/vendors/bootstrap-datepicker.pt-BR.min.js}"></script>
+
 <script th:src="@{/layout/javascripts/algaworks.min.js}"></script>
 <script th:src="@{/layout/javascripts/exclusao.js}"></script>
+
 
 <th:block layout:fragment="javascript-extra"></th:block>
 
