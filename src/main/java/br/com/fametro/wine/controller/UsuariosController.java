@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fametro.wine.model.Usuario;
 import br.com.fametro.wine.repository.Grupos;
+import br.com.fametro.wine.repository.Usuarios;
+import br.com.fametro.wine.repository.filter.UsuarioFilter;
 import br.com.fametro.wine.service.CadastroUsuarioService;
 import br.com.fametro.wine.service.exception.EmailUsuarioJaCadastradoException;
 import br.com.fametro.wine.service.exception.SenhaObrigatoriaUsuarioException;
@@ -25,6 +27,9 @@ public class UsuariosController {
 	
 	@Autowired
 	private Grupos grupos;
+	
+	@Autowired
+	private Usuarios usuarios;
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Usuario usuario) {
@@ -51,5 +56,13 @@ public class UsuariosController {
 		
 		attributes.addFlashAttribute("mensagem", "Usuário salvo com sucesso");
 		return new ModelAndView("redirect:/usuarios/novo");
+	}
+	
+	@RequestMapping
+	public ModelAndView pesquisar(UsuarioFilter usuarioFilter) {
+		ModelAndView mv = new ModelAndView("/usuario/PesquisaUsuarios");
+		mv.addObject("usuarios", usuarios.findAll());
+		mv.addObject("grupos", grupos.findAll());
+		return mv;
 	}
 }

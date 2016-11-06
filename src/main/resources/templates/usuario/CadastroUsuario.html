@@ -2,7 +2,9 @@
 <html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorator="layout/LayoutPadrao">
+	layout:decorator="layout/LayoutPadrao"
+	xmlns:data="http://www.thymeleaf.org/extras/data"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 
 <head>
 	<title>Cadastro vinho</title>
@@ -16,7 +18,19 @@
 
 		<div class="page-header">
 			<div class="container-fluid">
-				<h1>Cadastro de usuário</h1>
+				<div class="row">
+				<div class="col-xs-10">
+					<h1>Cadastro de usuário</h1>
+				</div>
+				
+				<div class="col-xs-2">
+					<div class="aw-page-header-controls">
+						<a class="btn  btn-default" th:href="@{/usuarios}">
+							<i class="glyphicon  glyphicon-plus-sign"></i> <span class="hidden-xs  hidden-sm">Pesquisar usuários</span>
+						</a>
+					</div>
+				</div>
+			</div>
 			</div>
 		</div>
 
