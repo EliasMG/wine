@@ -1,5 +1,29 @@
 /*var Wine = Wine || {};
 
+Wine.MaskPhoneNumber = (function() {
+	
+	function MaskPhoneNumber() {
+		this.inputPhoneNumber = $('.js-phone-number');
+	}
+	
+	MaskPhoneNumber.prototype.enable = function() {
+		var maskBehavior = function (val) {
+		  return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+		};
+		
+		var options = {
+		  onKeyPress: function(val, e, field, options) {
+		      field.mask(maskBehavior.apply({}, arguments), options);
+		    }
+		};
+		
+		this.inputPhoneNumber.mask(maskBehavior, options);
+	}
+	
+	return MaskPhoneNumber;
+	
+}());
+
 Wine.MaskDate = (function() {
 	
 	function MaskDate() {
@@ -21,7 +45,10 @@ Wine.MaskDate = (function() {
 
 $(function() {
 	
-	var maskDate = new Wine.MaskDate();
-	maskDate.enable();
+	//var maskDate = new Wine.MaskDate();
+	//maskDate.enable();
+	
+	var maskPhoneNumber = new Wine.MaskPhoneNumber();
+	maskPhoneNumber.enable();
 	
 });*/
