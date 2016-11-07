@@ -1,4 +1,4 @@
-var Wine = Wine || {};
+/*var Wine = Wine || {};
 
 Wine.MaskDate = (function() {
 	
@@ -24,4 +24,4 @@ $(function() {
 	var maskDate = new Wine.MaskDate();
 	maskDate.enable();
 	
-});
+});*/

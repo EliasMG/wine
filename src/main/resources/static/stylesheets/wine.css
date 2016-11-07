@@ -41,6 +41,50 @@
 }
 
 /*
+######################
+# COMPONENTES
+######################
+*/
+
+/* Tabela Simples */
+.bw-tabela-simples {
+	margin-top: 15px;
+}
+
+.bw-tabela-simples table tr th {
+	border-bottom-width: 1px;
+}
+
+.bw-tabela-simples table tr td {
+    border-top: none;
+    border-bottom: 1px solid #e7eaec;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+/*
+###################
+# PÁGINAS DO SISTEMA
+###################
+*/
+
+/* Tabela Cervejas página de Venda */
+.wn-tabela-vinhos {
+	margin-bottom: 15px;
+}
+
+.wn-tabela-vinhos__vazio {
+	padding: 15px 15px;
+	
+	border: 1px dashed #ddd;
+	
+	text-align: center;
+	font-size: 1.2em;
+	font-weight: 300;
+	color: #555;
+}
+
+/*
 ######################################
 # CUSTOMIZAÇÃO DE COMPONENTES
 ######################################
