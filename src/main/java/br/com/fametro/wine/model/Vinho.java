@@ -2,6 +2,7 @@ package br.com.fametro.wine.model;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -46,6 +47,9 @@ public class Vinho {
 	
 	@NotNull(message = "Valor é obrigatório")
 	private BigDecimal valor;
+	
+	@Column(name = "quantidade_estoque")
+	private Integer quantidadeEstoque;
 	
 	private String foto;
 	
@@ -134,6 +138,14 @@ public class Vinho {
 
 	public void setTeorAcucar(TeorAcucar teorAcucar) {
 		this.teorAcucar = teorAcucar;
+	}
+
+	public Integer getQuantidadeEstoque() {
+		return quantidadeEstoque;
+	}
+
+	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
+		this.quantidadeEstoque = quantidadeEstoque;
 	}
 
 	@Override

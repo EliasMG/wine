@@ -1,4 +1,4 @@
-/*var Wine = Wine || {};
+var Wine = Wine || {};
 
 Wine.MaskPhoneNumber = (function() {
 	
@@ -45,10 +45,10 @@ Wine.MaskDate = (function() {
 
 $(function() {
 	
-	//var maskDate = new Wine.MaskDate();
-	//maskDate.enable();
+	var maskDate = new Wine.MaskDate();
+	maskDate.enable();
 	
 	var maskPhoneNumber = new Wine.MaskPhoneNumber();
 	maskPhoneNumber.enable();
 	
-});*/
+});

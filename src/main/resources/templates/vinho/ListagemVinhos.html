@@ -47,9 +47,10 @@
 						<th>Classe do vinho</th>
 						<th>Cor do vinho</th>
 						<th>Teor de açucar</th>
+						<th>Valor</th>
+						<th>Estouqe</th>
 						<th>Safra</th>
 						<th>Volume</th>
-						<th>Valor</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -60,9 +61,11 @@
 						<td th:text="${vinho.classeVinho}">Mesa</td>
 						<td th:text="${vinho.corVinho.descricao}">Tinto</td>
 						<td th:text="${vinho.teorAcucar.descricao}">Seco</td>
+						<td th:text="${vinho.valor}">R$ 55,00</td>
+						<td th:text="${vinho.quantidadeEstoque}">1</td>
 						<td th:text="${vinho.safra}">2014</td>
 						<td th:text="${vinho.volume}">750ml</td>
-						<td th:text="${vinho.valor}">R$ 55,00</td>
+						
 						
 						<td class="text-center">
 	   						<a class="btn btn-link btn-xs" th:href="@{/vinhos/novo/{codigo}(codigo=${vinho.codigo})}">
@@ -75,7 +78,7 @@
 	   					</td>
 					</tr>
 					<tr th:if="${vinhos.empty}">
-						<td colspan="8">Nenhum vinho cadastrado</td>
+						<td colspan="12">Nenhum vinho cadastrado</td>
 					</tr>
 					
 				</tbody>

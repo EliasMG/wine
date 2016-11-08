@@ -34,21 +34,21 @@
 			</div>
 	
 			<div class="row">
-				<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('classeVinho')} ? has-error">
+				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('classeVinho')} ? has-error">
 					<label for="classeVinho" class="control-label">Classe do vinho</label>
 					<select id="classeVinho" class="form-control" th:field="*{classeVinho}">
 						<option value="">Selecione a classe do vinho</option>
 						<option th:each="classe : ${classes}" th:value="${classe}" th:text="${classe.descricao}"></option>
 					</select>
 				</div>
-				<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('corVinho')} ? has-error">
+				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('corVinho')} ? has-error">
 					<label for="corVinho" class="control-label">Cor do vinho</label>
 					<select id="corVinho" class="form-control" th:field="*{corVinho}">
 						<option value="">Selecione a cor do vinho</option>
 						<option th:each="cor : ${corVinho}" th:value="${cor}" th:text="${cor.descricao}"></option>
 					</select>
 				</div>
-				<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('teorAcucar')} ? has-error">
+				<div class="col-sm-3  form-group" th:classappend="${#fields.hasErrors('teorAcucar')} ? has-error">
 					<label for="teorAcucar" class="control-label">Teor de açucar do vinho</label>
 					<select id="teorAcucar" class="form-control" th:field="*{teorAcucar}">
 						<option value="">Selecione o teor de açucar do vinho</option>
@@ -58,19 +58,30 @@
 			</div>
 			
 			<div class="row">
-				<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('volume')} ? has-error">
-					<label for="volume" class="control-label">Volume (ml)</label>
-					<input id="volume" type="text" class="form-control" th:field="*{volume}"/>
+				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error">
+					<label for="valor" class="control-label">Valor</label>
+					<div class="input-group">
+						<div class="input-group-addon">R$</div>
+						<input id="valor" type="text" class="form-control" th:field="*{valor}"/>
+					</div>
 				</div>
 				
-				<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('safra')} ? has-error">
+				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error">
+					<label for="valor" class="control-label">Estoque</label>
+					<input id="valor" type="text" class="form-control" th:field="*{quantidadeEstoque}"/>
+				</div>
+				
+				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('safra')} ? has-error">
 					<label for="safra" class="control-label">Safra</label>
 					<input id="safra" type="text" class="form-control" th:field="*{safra}"/>
 				</div>
 				
-				<div class="col-sm-4  form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error">
-					<label for="valor" class="control-label">Valor</label>
-					<input id="valor" type="text" class="form-control" th:field="*{valor}"/>
+				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('volume')} ? has-error">
+					<label for="volume" class="control-label">Volume (ml)</label>
+					<div class="input-group">
+					<input id="volume" type="text" class="form-control" th:field="*{volume}"/>
+						<div class="input-group-addon">ml</div>
+					</div>
 				</div>
 			</div>
 			
