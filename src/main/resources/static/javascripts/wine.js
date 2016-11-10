@@ -43,6 +43,20 @@ Wine.MaskDate = (function() {
 	
 }());
 
+Wine.MaskCep = (function() {
+	
+	function MaskCep() {
+		this.inputCep = $('.js-cep');
+	}
+	
+	MaskCep.prototype.enable = function() {
+		this.inputCep.mask('00.000-000');
+	}
+	
+	return MaskCep;
+	
+}());
+
 $(function() {
 	
 	var maskDate = new Wine.MaskDate();
@@ -50,5 +64,8 @@ $(function() {
 	
 	var maskPhoneNumber = new Wine.MaskPhoneNumber();
 	maskPhoneNumber.enable();
+	
+	var maskCep = new Wine.MaskCep();
+	maskCep.enable();
 	
 });
