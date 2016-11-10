@@ -32,23 +32,23 @@
 			</div>
 			
 			<div class="row">
-				<div class="form-group  col-sm-4" th:classappend="${#fields.hasErrors('nome')} ? has-error">
+				<div class="form-group  col-sm-4" th:classappend="${#fields.hasErrors('tipoPessoa')} ? has-error">
 					<label>Tipo pessoa</label> 
 					<div>
 						<th:block th:each="tipoPessoa : ${tiposPessoa}">
 							<div class="radio  radio-inline">
 								<input type="radio" th:id="|id_${tipoPessoa}|" class="js-radio-tipo-pessoa"
 									th:field="*{tipoPessoa}" th:value="${tipoPessoa}"
-									name="tipoPessoa" data-documento="${tipoPessoa.documento}" data-mascara="${tipoPessoa.mascara}"/> 
+									name="tipoPessoa" th:attr="data-documento=${tipoPessoa.documento}, data-mascara=${tipoPessoa.mascara}"/> 
 								<label class="control-label" th:for="|id_${tipoPessoa}|" th:text="${tipoPessoa.descricao}">Física</label>
 							</div>
 						</th:block>
 					</div>
 				</div>
 				
-				<div class="form-group  col-sm-8" >
+				<div class="form-group  col-sm-8" th:classappend="${#fields.hasErrors('cpfOuCnpj')} ? has-error">
 					<label for="cpfOuCnpj">CPF/CNPJ</label>
-					<input type="text" class="form-control" id="cpfOuCnpj" disabled="disabled"/>
+					<input type="text" class="form-control" id="cpfOuCnpj" th:field="*{cpfOuCnpj}" disabled="disabled"/>
 				</div>
 			</div>
 			

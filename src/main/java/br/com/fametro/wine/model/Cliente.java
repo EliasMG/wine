@@ -9,9 +9,12 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
@@ -39,6 +42,7 @@ public class Cliente implements Serializable{
 	private String telefone;
 	
 	@NotBlank(message = "Email é obrigatório")
+	@Email(message = "Email inválido")
 	private String email;
 	
 	@NotBlank(message = "Logradouro é obrigatório")
@@ -58,6 +62,11 @@ public class Cliente implements Serializable{
 	
 	@NotBlank(message = "Estado é obrigatório")
 	private String estado;
+	
+	@PrePersist @PreUpdate
+	private void prePersistPreUpdate() {
+		this.cpfOuCnpj = this.cpfOuCnpj.replaceAll("\\.|-|/", "");
+	}
 	
 	public Long getCodigo() {
 		return codigo;
