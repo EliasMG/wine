@@ -12,6 +12,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import br.com.fametro.wine.model.Cliente;
 import br.com.fametro.wine.model.TipoPessoa;
+import br.com.fametro.wine.repository.Clientes;
+import br.com.fametro.wine.repository.filter.ClienteFilter;
 import br.com.fametro.wine.service.CadastroClienteService;
 
 @Controller
@@ -19,7 +21,18 @@ import br.com.fametro.wine.service.CadastroClienteService;
 public class ClientesController {
 	
 	@Autowired
+	private Clientes clientes;
+	
+	@Autowired
 	private CadastroClienteService cadastroClienteService;
+	
+	@RequestMapping
+	public ModelAndView pesquisa(ClienteFilter clienteFilter, BindingResult result) {
+		ModelAndView mv = new ModelAndView("/cliente/PesquisaClientes");
+		mv.addObject("clientes", clientes.findAll());
+		mv.addObject("tiposPessoa", TipoPessoa.values());
+		return mv;
+	}
 	
 	@RequestMapping("/novo")
 	public ModelAndView novo(Cliente cliente) {

@@ -38,7 +38,7 @@ public class Usuario implements Serializable {
 	@NotBlank(message = "E-mail é obrigatório")
 	@Email(message = "E-mail inválido")
 	private String email;
-
+	
 	private String senha;
 	
 	@Transient

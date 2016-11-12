@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="'layout/LayoutPadrao'">
+	
+<head>
+	<title>Pesquisa de clientes</title>
+</head>
+
+<body>
+<section layout:fragment="conteudo">
+	<div class="page-header">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-10">
+					<h1>Pesquisa de clientes</h1>
+				</div>
+				
+				<div class="col-xs-2">
+					<div class="aw-page-header-controls">
+						<a class="btn btn-primary" th:href="@{/clientes/novo}">
+							<i class="fa  fa-plus-circle"></i> <span class="hidden-xs  hidden-sm">Novo cliente</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-fluid">
+		<form method="GET" th:object="${clienteFilter}" class="form-vertical  js-form-loading" th:action="@{/clientes/novo}">
+			<div class="row">
+				<div class="form-group  col-sm-8">
+					<label class="control-label" for="nome">Nome</label>
+					<input type="text" class="form-control" id="nome" autofocus="autofocus" th:field="*{nome}"/>
+				</div>
+				
+				<div class="form-group  col-sm-4">
+					<label for="cpfOuCnpj" class="control-label">CPF/CNPJ</label>
+					<input type="text" class="form-control" id="cpfOuCnpj" th:field="*{cpfOuCnpj}"/>
+				</div>
+			</div>
+			
+			<button type="submit" class="btn  btn-primary">Pesquisar</button>
+		</form>
+		
+		<div class="table-responsive  bw-tabela-simples">
+			<table class="table  table-hover">
+				<thead>
+					<tr>
+						<th>Nome</th>
+						<th>Tipo pessoa</th>
+						<th>CPF/CNPJ</th>
+						<th>Telefone</th>
+						<th>Cidade/Estado</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="cliente : ${clientes}">
+						<td th:text="${cliente.nome}"></td>
+						<td th:text="${cliente.tipoPessoa.descricao}">Física</td>
+						<td th:text="${cliente.cpfOuCnpj}">111.111.111-11</td>
+						<td th:text="${cliente.telefone}">(11) 99999-9999</td>
+						<td th:text="|${cliente.cidade}/${cliente.estado}|">Cidade/Estado</td>
+						
+						<td class="text-center">
+							<a class="btn  btn-link  btn-xs" title="Editar"> 
+								<i class="glyphicon glyphicon-pencil"></i>
+							</a>
+							<a class="btn  btn-link  btn-xs" title="Excluir">
+								<i class="glyphicon glyphicon-remove"></i>
+							</a>
+						</td>
+					</tr>
+					<tr th:if="${clientes.empty}">
+						<td colspan="5">Nenhum cliente encontrado</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		
+		<!-- <brewer:pagination page="${pagina}"/>  -->
+		
+	</div>
+</section>
+</body>
+</html>

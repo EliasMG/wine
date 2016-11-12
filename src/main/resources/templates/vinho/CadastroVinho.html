@@ -13,9 +13,21 @@
 
 	<div class="page-header">
 		<div class="container-fluid">
-			<h1>
-				Cadastro de vinho
-			</h1>
+			<div class="row">
+				<div class="col-xs-10">
+					<h1>
+						Cadastro de vinho
+					</h1>
+				</div>
+		
+				<div class="col-xs-2">
+					<div class="aw-page-header-controls">
+						<a class="btn btn-primary" th:href="@{/vinhos}">
+							<i class="fa  fa-search"></i> <span class="hidden-xs  hidden-sm">Pesquisa</span>
+						</a>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 
@@ -62,24 +74,24 @@
 					<label for="valor" class="control-label">Valor</label>
 					<div class="input-group">
 						<div class="input-group-addon">R$</div>
-						<input id="valor" type="text" class="form-control" th:field="*{valor}"/>
+						<input id="valor" type="text" class="form-control js-decimal" th:field="*{valor}"/>
 					</div>
 				</div>
 				
 				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('valor')} ? has-error">
 					<label for="valor" class="control-label">Estoque</label>
-					<input id="valor" type="text" class="form-control" th:field="*{quantidadeEstoque}"/>
+					<input id="valor" type="text" class="form-control js-plain" th:field="*{quantidadeEstoque}"/>
 				</div>
 				
 				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('safra')} ? has-error">
 					<label for="safra" class="control-label">Safra</label>
-					<input id="safra" type="text" class="form-control" th:field="*{safra}"/>
+					<input id="safra" type="text" class="form-control js-plain" th:field="*{safra}"/>
 				</div>
 				
 				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('volume')} ? has-error">
 					<label for="volume" class="control-label">Volume (ml)</label>
 					<div class="input-group">
-					<input id="volume" type="text" class="form-control" th:field="*{volume}"/>
+					<input id="volume" type="text" class="form-control js-plain" th:field="*{volume}"/>
 						<div class="input-group-addon">ml</div>
 					</div>
 				</div>

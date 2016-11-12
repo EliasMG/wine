@@ -1,5 +1,21 @@
 var Wine = Wine || {};
 
+Wine.MaskMoney = (function() {
+	
+	function MaskMoney() {
+		this.decimal = $('.js-decimal');
+		this.plain = $('.js-plain');
+	}
+	
+	MaskMoney.prototype.enable = function() {
+		this.decimal.maskMoney({ decimal: ',', thousands: '.' });
+		this.plain.maskMoney({ precision: 0, thousands: '.' });
+	}
+	
+	return MaskMoney;
+	
+}());
+
 Wine.MaskPhoneNumber = (function() {
 	
 	function MaskPhoneNumber() {
@@ -58,6 +74,9 @@ Wine.MaskCep = (function() {
 }());
 
 $(function() {
+	
+	var maskMoney = new Wine.MaskMoney();
+	maskMoney.enable();
 	
 	var maskDate = new Wine.MaskDate();
 	maskDate.enable();
