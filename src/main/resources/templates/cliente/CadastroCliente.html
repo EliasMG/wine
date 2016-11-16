@@ -33,7 +33,7 @@
 	</div>
 
 	<div class="container-fluid">
-		<form method="POST" th:object="${cliente}" class="form-vertical  js-form-loading" th:action="@{/clientes}">
+		<form method="POST" th:object="${cliente}" class="form-vertical  js-form-loading" th:action="@{/clientes/novo}">
 			<div layout:include="mensagens/MensagemErro"></div>
 			<input type="hidden" th:field="*{codigo}"/>
 		

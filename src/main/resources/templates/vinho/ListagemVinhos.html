@@ -42,8 +42,9 @@
 			<table id="tabela-produtos" class="table  table-striped  table-bordered  table-hover  table-condensed  js-sticky-table">
 				<thead class="aw-table-header-solid">
 					<tr>
-						<th>Código</th>
-						<th>Nome</th>
+						<th class="table-vinhos-col-foto"></th>
+						<th class="table-vinhos-col-codigo">Código</th>
+						<th class=".table-vinhos-col-nome">Nome</th>
 						<th>Classe do vinho</th>
 						<th>Cor do vinho</th>
 						<th>Teor de açucar</th>
@@ -56,9 +57,12 @@
 				</thead>
 				<tbody>
 					<tr th:each="vinho : ${vinhos}">
-						<td th:text="${vinho.codigo}">1</td>
+						<td class="text-center">
+							<img th:src="@{/fotos/thumbnail.{foto}(foto=${vinho.fotoOuMock})}" class="img-responsive"/>
+						</td>
+						<td class="text-center" th:text="${vinho.codigo}">1</td>
 						<td><a th:href="@{/vinhos/{codigo}(codigo=${vinho.codigo})}" th:text="${vinho.nome}">Viña Amalia Dos Fincas Malbec</a></td>
-						<td th:text="${vinho.classeVinho}">Mesa</td>
+						<td class="text-center" th:text="${vinho.classeVinho}">Mesa</td>
 						<td th:text="${vinho.corVinho.descricao}">Tinto</td>
 						<td th:text="${vinho.teorAcucar.descricao}">Seco</td>
 						<td th:text="${vinho.valor}">R$ 55,00</td>

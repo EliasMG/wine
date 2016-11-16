@@ -73,6 +73,33 @@ Wine.MaskCep = (function() {
 	
 }());
 
+Wine.Security = (function() {
+	
+	function Security() {
+		this.token = $('input[name=_csrf]').val();
+		this.header = $('input[name=_csrf_header]').val();
+	}
+	
+	Security.prototype.enable = function() {
+		$(document).ajaxSend(function(event, jqxhr, settings) {
+			jqxhr.setRequestHeader(this.header, this.token);
+		}.bind(this));
+	}
+	
+	return Security;
+	
+}());
+
+Wine.formatarMoeda = function(valor) {
+	numeral.language('pt-br');
+	return numeral(valor).format('0,0.00');
+}
+
+Wine.recuperarValor = function(valorFormatado) {
+	numeral.language('pt-br');
+	return numeral().unformat(valorFormatado);
+}
+
 $(function() {
 	
 	var maskMoney = new Wine.MaskMoney();
@@ -86,5 +113,8 @@ $(function() {
 	
 	var maskCep = new Wine.MaskCep();
 	maskCep.enable();
+	
+	var security = new Wine.Security();
+	security.enable();
 	
 });

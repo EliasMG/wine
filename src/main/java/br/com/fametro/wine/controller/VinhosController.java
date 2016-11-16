@@ -1,16 +1,21 @@
 package br.com.fametro.wine.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.fametro.wine.dto.VinhoDTO;
 import br.com.fametro.wine.model.ClasseVinho;
 import br.com.fametro.wine.model.CorVinho;
 import br.com.fametro.wine.model.TeorAcucar;
@@ -88,6 +93,11 @@ public class VinhosController {
 		
 		mv.addObject("vinho", vinho);
 		return mv;
+	}
+	
+	@RequestMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<VinhoDTO> pesquisar(String nome) {
+		return vinhos.porNome(nome);
 	}
 	
 }

@@ -147,6 +147,10 @@ public class Vinho {
 	public void setQuantidadeEstoque(Integer quantidadeEstoque) {
 		this.quantidadeEstoque = quantidadeEstoque;
 	}
+	
+	public String getFotoOuMock() {
+		return !StringUtils.isEmpty(foto) ? foto : "mockup-garrafa.png";
+	}
 
 	@Override
 	public int hashCode() {

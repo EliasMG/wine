@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.coobird.thumbnailator.Thumbnails;
+import net.coobird.thumbnailator.name.Rename;
+
 @Profile("storage-local")
 @Component
 public class FotoStorageLocal implements FotoStorage, FotoReader {
@@ -36,6 +39,13 @@ public class FotoStorageLocal implements FotoStorage, FotoReader {
 		} catch (IOException e) {
 			throw new RuntimeException("Erro salvando a foto", e);
 		}
+		
+		try {
+			Thumbnails.of(this.local.resolve(nomeFoto).toString()).size(40, 68).toFiles(Rename.PREFIX_DOT_THUMBNAIL);
+		} catch (Exception e) {
+			throw new RuntimeException("Erro gerando Thumbnail", e);
+		}
+		
 
 		return nomeFoto;
 	}

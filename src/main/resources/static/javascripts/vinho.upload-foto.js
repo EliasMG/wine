@@ -19,6 +19,7 @@ Wine.UploadFoto = (function() {
 		
 		UIkit.uploadSelect($('#upload-select'), settings);
 		UIkit.uploadDrop(this.uploadDrop, settings);
+		
 	}
 	
 	function adicionarCsrfToken(xhr) {

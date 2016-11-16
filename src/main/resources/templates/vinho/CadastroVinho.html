@@ -34,7 +34,6 @@
 	<div class="container-fluid">
 	
 		<div layout:include="mensagens/MensagemSucesso"></div>
-		
 	
 		<form method="POST" th:object="${vinho}" class="form-vertical  js-form-loading" th:action="@{/vinhos/novo}">
 			<div layout:include="mensagens/MensagemErro"></div>
@@ -74,7 +73,7 @@
 					<label for="valor" class="control-label">Valor</label>
 					<div class="input-group">
 						<div class="input-group-addon">R$</div>
-						<input id="valor" type="text" class="form-control js-decimal" th:field="*{valor}"/>
+						<input id="valor" type="text" class="form-control " th:field="*{valor}"/>
 					</div>
 				</div>
 				
@@ -85,7 +84,7 @@
 				
 				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('safra')} ? has-error">
 					<label for="safra" class="control-label">Safra</label>
-					<input id="safra" type="text" class="form-control js-plain" th:field="*{safra}"/>
+					<input id="safra" type="text" class="form-control " th:field="*{safra}"/>
 				</div>
 				
 				<div class="col-sm-2  form-group" th:classappend="${#fields.hasErrors('volume')} ? has-error">

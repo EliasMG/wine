@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
+				.antMatchers("/clientes/novo").hasRole("CADASTRAR_CLIENTE")
+				.antMatchers("/usuarios/novo").hasRole("CADASTRAR_USUARIO")
 				.anyRequest().authenticated()
 				.and()
 			.formLogin()
@@ -40,7 +42,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.permitAll()
 				.and()
 			.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.and()
+			.sessionManagement()
+				.invalidSessionUrl("/login");
 	}
 	
 	@Bean
