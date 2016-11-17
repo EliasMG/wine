@@ -1,7 +1,6 @@
 package br.com.fametro.wine.service;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.fametro.wine.model.ItemVenda;
+import br.com.fametro.wine.model.StatusVenda;
 import br.com.fametro.wine.model.Venda;
 import br.com.fametro.wine.repository.Vendas;
 
@@ -20,9 +20,9 @@ public class CadastroVendaService {
 	
 	@Transactional
 	public void salvar(Venda venda) {
-		if (venda.isNova()) {
+		/*if (venda.isNova()) {
 			venda.setDataCriacao(LocalDateTime.now());
-		}
+		}*/
 		
 		BigDecimal valorTotalItens = venda.getItens().stream()
 				.map(ItemVenda::getValorTotal)
@@ -31,9 +31,9 @@ public class CadastroVendaService {
 		BigDecimal valorTotal = calcularValorTotal(valorTotalItens, venda.getValorFrete(), venda.getValorDesconto());
 		venda.setValorTotal(valorTotal);
 		
-		if (venda.getDataEntrega() != null) {
+		/*if (venda.getDataEntrega() != null) {
 			venda.setDataHoraEntrega(LocalDateTime.of(venda.getDataEntrega(), venda.getHoraEntrega()));
-		}
+		}*/
 		
 		vendas.save(venda);
 	}
@@ -43,6 +43,12 @@ public class CadastroVendaService {
 				.add(Optional.ofNullable(valorFrete).orElse(BigDecimal.ZERO))
 				.subtract(Optional.ofNullable(valorDesconto).orElse(BigDecimal.ZERO));
 		return valorTotal;
+	}
+	
+	@Transactional
+	public void emitir(Venda venda) {
+		venda.setStatus(StatusVenda.EMITIDA);
+		salvar(venda);
 	}
 
 }

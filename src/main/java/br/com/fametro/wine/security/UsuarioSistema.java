@@ -1,4 +1,4 @@
-package br.com.fametro.wine.controller;
+package br.com.fametro.wine.security;
 
 import java.util.Collection;
 

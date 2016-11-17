@@ -5,6 +5,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,7 +45,6 @@ public class UsuariosController {
 		if (result.hasErrors()) {
 			return novo(usuario);
 		}
-		
 		try {
 			cadastroUsuarioService.salvar(usuario);
 		} catch (EmailUsuarioJaCadastradoException e) {
@@ -63,6 +64,14 @@ public class UsuariosController {
 		ModelAndView mv = new ModelAndView("/usuario/PesquisaUsuarios");
 		mv.addObject("usuarios", usuarios.findAll());
 		mv.addObject("grupos", grupos.findAll());
+		return mv;
+	}
+	
+	@GetMapping("/{codigo}")
+	public ModelAndView editar(@PathVariable Long codigo) {
+		Usuario usuario = usuarios.buscarComGrupos(codigo);
+		ModelAndView mv = novo(usuario);
+		mv.addObject(usuario);
 		return mv;
 	}
 }

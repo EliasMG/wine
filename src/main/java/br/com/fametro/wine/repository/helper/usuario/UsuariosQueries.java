@@ -10,4 +10,6 @@ public interface UsuariosQueries {
 	public Optional<Usuario> porEmailAtivo(String email);
 	
 	public List<String> permissoes(Usuario usuario);
+	
+	public Usuario buscarComGrupos(Long codigo);
 }

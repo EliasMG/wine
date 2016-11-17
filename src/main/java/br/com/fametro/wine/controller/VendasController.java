@@ -12,9 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import br.com.fametro.wine.model.StatusVenda;
+import br.com.fametro.wine.model.TipoPessoa;
 import br.com.fametro.wine.model.Venda;
 import br.com.fametro.wine.model.Vinho;
+import br.com.fametro.wine.repository.Vendas;
 import br.com.fametro.wine.repository.Vinhos;
+import br.com.fametro.wine.repository.filter.VendaFilter;
+import br.com.fametro.wine.security.UsuarioSistema;
 import br.com.fametro.wine.service.CadastroVendaService;
 import br.com.fametro.wine.session.TabelaItensVenda;
 
@@ -24,6 +29,9 @@ public class VendasController {
 	
 	@Autowired
 	private Vinhos vinhos;
+	
+	@Autowired
+	private Vendas vendas;
 	
 	@Autowired
 	private TabelaItensVenda tabelaItensVenda;
@@ -38,15 +46,25 @@ public class VendasController {
 		return mv;
 	}
 
-	@PostMapping("/nova")
+	@PostMapping(value = "/nova", params = "salvar")
 	public ModelAndView salvar(Venda venda, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioSistema usuarioSistema) {
 		ModelAndView mv = new ModelAndView("redirect:/vendas/nova");
-		System.out.println("kkkkkkkkkkkkk");
-		//venda.setUsuario(usuarioSistema.getUsuario());
+		venda.setUsuario(usuarioSistema.getUsuario());
 		venda.adicionarItens(tabelaItensVenda.getItens());
 		
 		cadastroVendaService.salvar(venda);
 		attributes.addFlashAttribute("mensagem", "Venda salva com sucesso");
+		return mv;
+	}
+	
+	@PostMapping(value = "/nova", params = "emitir")
+	public ModelAndView emitir(Venda venda, RedirectAttributes attributes, @AuthenticationPrincipal UsuarioSistema usuarioSistema) {
+		ModelAndView mv = new ModelAndView("redirect:/vendas/nova");
+		venda.setUsuario(usuarioSistema.getUsuario());
+		venda.adicionarItens(tabelaItensVenda.getItens());
+		
+		cadastroVendaService.emitir(venda);
+		attributes.addFlashAttribute("mensagem", "Venda emitida com sucesso");
 		return mv;
 	}
 	
@@ -69,6 +87,17 @@ public class VendasController {
 	public ModelAndView excluirItem(@PathVariable("codigoVinho") Vinho vinho) {
 		tabelaItensVenda.excluirItem(vinho);
 		return mvTabelaItensVenda();
+	}
+	
+	@GetMapping
+	public ModelAndView pesquisar(VendaFilter vendaFilter) {
+		ModelAndView mv = new ModelAndView("/venda/PesquisaVendas");
+		mv.addObject("todosStatus", StatusVenda.values());
+		mv.addObject("tiposPessoa", TipoPessoa.values());
+		mv.addObject("vendas", vendas.findAll());
+		
+		
+		return mv;
 	}
 
 	private ModelAndView mvTabelaItensVenda() {

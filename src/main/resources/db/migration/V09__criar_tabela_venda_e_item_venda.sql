@@ -1,6 +1,6 @@
 CREATE TABLE venda (
     codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-    data_criacao DATETIME NOT NULL,
+    data_criacao DATETIME,
     valor_frete DECIMAL(10,2),
     valor_desconto DECIMAL(10,2),
     valor_total DECIMAL(10,2) NOT NULL,

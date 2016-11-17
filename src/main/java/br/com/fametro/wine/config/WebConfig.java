@@ -1,5 +1,6 @@
 package br.com.fametro.wine.config;
 
+import java.math.BigDecimal;
 import java.time.format.DateTimeFormatter;
 
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
@@ -11,6 +12,7 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.springframework.data.repository.support.DomainClassConverter;
 import org.springframework.format.FormatterRegistry;
 import org.springframework.format.datetime.standard.DateTimeFormatterRegistrar;
+import org.springframework.format.number.NumberStyleFormatter;
 import org.springframework.format.support.FormattingConversionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
@@ -34,13 +36,13 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	
 	@Override
 	public void addViewControllers(ViewControllerRegistry registry) {
-		registry.addRedirectViewController("/", "/vinhos/novo");
+		registry.addRedirectViewController("/", "/vendas/nova");
 	}
 	
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
-		//NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
-		//registry.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter);
+		NumberStyleFormatter bigDecimalFormatter = new NumberStyleFormatter("#,##0.00");
+		registry.addFormatterForFieldType(BigDecimal.class, bigDecimalFormatter);
 		
 		DateTimeFormatterRegistrar dateTimeFormatter = new DateTimeFormatterRegistrar();
 		dateTimeFormatter.setDateFormatter(DateTimeFormatter.ofPattern("dd/MM/yyyy"));

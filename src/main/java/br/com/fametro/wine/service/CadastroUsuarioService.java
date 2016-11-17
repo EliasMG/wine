@@ -38,7 +38,6 @@ public class CadastroUsuarioService {
 			usuario.setSenha(this.passwordEncoder.encode(usuario.getSenha()));
 			usuario.setConfirmacaoSenha(usuario.getSenha());
 		}
-		
 		usuarios.save(usuario);
 	}
 	
