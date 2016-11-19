@@ -50,5 +50,13 @@ public class CadastroVendaService {
 		venda.setStatus(StatusVenda.EMITIDA);
 		salvar(venda);
 	}
+	
+	@Transactional
+	public void cancelar(Venda venda) {
+		Venda vendaExistente = vendas.findOne(venda.getCodigo());
+		
+		vendaExistente.setStatus(StatusVenda.CANCELADA);
+		vendas.save(vendaExistente);
+	}
 
 }

@@ -44,19 +44,6 @@
 				</div>
 			</div>
 			
-			<div class="row">
-				<div class="form-group  col-sm-12">
-					<label class="control-label">Grupos</label> 
-					<div>
-						<th:block th:each="grupo : ${grupos}">
-	  						<div class="checkbox  checkbox-inline"> 
-		    					<input type="checkbox" th:value="${grupo.codigo}" th:field="*{grupos}"/>
-		    					<label th:for="${#ids.prev('grupos')}" th:text="${grupo.nome}">Administrador</label>
-	    					</div>
-	    				</th:block>
-					</div>
-  				</div>
-			</div>
 			
 			<button type="submit" class="btn  btn-primary">Pesquisar</button>
 		</form>
@@ -78,10 +65,11 @@
 						<td th:text="${usuario.email}"></td>
 						<td th:text="${usuario.ativo} ? Ativo : Inativo"></td>
 	                 	<td class="text-center">
-							<a class="btn  btn-link  btn-xs" title="Editar"> 
+							<a class="btn  btn-link  btn-xs" title="Editar" th:href="@{/usuarios/{codigo}(codigo=${usuario.codigo})}"> 
 								<i class="glyphicon glyphicon-pencil"></i>
 							</a>
-							<a class="btn  btn-link  btn-xs" title="Excluir" th:href="@{/usuarios/{codigo}(codigo=${usuario.codigo})}">
+							<a class="btn  btn-link  btn-xs" title="Excluir" data-toggle="modal" data-target="#confirmacaoExclusaoModalUsuario"
+	   									th:attr="data-codigo=${usuario.codigo}, data-nome=${usuario.nome}">
 								<i class="glyphicon glyphicon-remove"></i>
 							</a>
 						</td>
@@ -93,6 +81,9 @@
 	             </tbody>
          	</table>
     	 </div>
+    	 
+    	 <div layout:include="usuario/DialogoConfirmacaoExclusaoUsuario"></div>
+    	 
 	</div>
 </section>
 </body>

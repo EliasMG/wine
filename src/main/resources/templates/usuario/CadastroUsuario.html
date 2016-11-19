@@ -19,8 +19,10 @@
 		<div class="page-header">
 			<div class="container-fluid">
 				<div class="row">
+				
 				<div class="col-xs-10">
-					<h1>Cadastro de usuário</h1>
+					<h1 th:if="${usuario.novo}">Cadastro de usuário</h1>
+					<h1 th:unless="${usuario.novo}">Edição de usuário - <span th:text="${usuario.nome}"></span></h1>
 				</div>
 				
 				<div class="col-xs-2">
@@ -38,7 +40,8 @@
 		
 		<div layout:include="mensagens/MensagemSucesso"></div>
 		
-			<form method="POST" th:object="${usuario}" class="form-vertical  js-form-loading" th:action="@{/usuarios/novo}">
+			<form method="POST" th:object="${usuario}" class="form-vertical  js-form-loading"
+				th:action="${usuario.novo} ? @{/usuarios/novo} : @{/usuarios/{codigo}(codigo=${usuario.codigo})}">
 				<div layout:include="mensagens/MensagemErro"></div>
 				<input type="hidden" th:field="*{codigo}"/>
 				

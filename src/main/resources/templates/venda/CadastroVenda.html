@@ -17,7 +17,8 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-xs-10">
-					<h1>Cadastro de venda</h1>
+					<h1 th:if="${venda.nova}">Cadastro de venda</h1>
+					<h1 th:unless="${venda.nova}">Edição da venda nº <span th:text="${venda.codigo}"></span></h1>
 				</div>
 			</div>
 		</div>
@@ -29,6 +30,7 @@
 		
 		<form method="POST" th:object="${venda}" th:action="@{/vendas/nova}" class="js-formulario-principal">
 			<input type="hidden" id="id" th:field="*{codigo}"/>
+			<input type="hidden" th:field="*{usuario}"/>
 			
 			<div class="row">
 				<div class="col-sm-4">
@@ -36,7 +38,7 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-usd  fa-3x"></i>
 						</div>
-						<div class="aw-box__value">R$<span class="js-valor-total-box">0,00</span></div>
+						<div class="aw-box__value">R$<span class="js-valor-total-box" th:text="${{venda.valorTotal}}">0,00</span></div>
 						<div class="aw-box__title">Total</div>
 					</div>
 				</div>
@@ -46,7 +48,7 @@
 						<div class="aw-box__icon">
 							<i class="fa  fa-tag  fa-3x"></i>
 						</div>
-						<div class="aw-box__value">Orçamento</div>
+						<div class="aw-box__value" th:text="${venda.status.descricao}">Orçamento</div>
 						<div class="aw-box__title">Status</div>
 					</div>
 				</div>
@@ -68,7 +70,8 @@
 				<div class="form-group  col-sm-4  wn-required">
 					<label class="control-label" for="nomeCliente">Cliente</label>
 					<div class="input-group">
-				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" placeholder="Clique na lupa para pesquisar o cliente"/>
+				      <input id="nomeCliente" type="text" readonly="readonly" class="form-control" th:field="*{cliente.nome}"
+				      		 placeholder="Clique na lupa para pesquisar o cliente"/>
 				      <input id="codigoCliente" type="hidden" th:field="*{cliente}"/>
 				      <span class="input-group-btn">
 				        <button class="btn  btn-default  js-tooltip" type="button" title="Pesquisa avançada"
@@ -84,7 +87,7 @@
 					<label class="control-label" for="valorFrete">Valor do frete</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">R$</div> 
-						<input type="text" maxlength="14" class="form-control  " id="valorFrete" th:field="*{valorFrete}"/>
+						<input type="text" maxlength="14" class="form-control  " id="valorFrete" th:field="*{valorFrete}" th:attr="data-valor=${valorFrete}"/>
 					</div>
 				</div>
 				
@@ -92,7 +95,7 @@
 					<label class="control-label" for="valorDesconto">Valor do desconto</label>
 					<div class="input-group">
 	      				<div class="input-group-addon">R$</div> 
-						<input type="text" maxlength="14" class="form-control  " id="valorDesconto" th:field="*{valorDesconto}"/>
+						<input type="text" maxlength="14" class="form-control  " id="valorDesconto" th:field="*{valorDesconto}" th:attr="data-valor=${valorDesconto}"/>
 					</div>
 				</div>
 			</div>
@@ -161,7 +164,7 @@
 					  </ul>
 					</div>
 				
-					<button class="btn  btn-danger">Cancelar</button>
+					<button class="btn  btn-danger js-submit-btn" th:attr="data-acao=cancelar" th:unless="${venda.nova}">Cancelar</button>
 				</div>
 			</div>
 		</form>

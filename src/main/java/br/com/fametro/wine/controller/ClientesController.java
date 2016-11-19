@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -57,6 +58,24 @@ public class ClientesController {
 		cadastroClienteService.salvar(cliente);
 		attributes.addFlashAttribute("mensagem", "Cliente salvo com sucesso!");
 		return new ModelAndView("redirect:/clientes/novo");
+	}
+	
+	@RequestMapping("/novo/{codigo}")
+	public ModelAndView edicao(@PathVariable("codigo") Cliente cliente) {
+		ModelAndView mv = new ModelAndView("/cliente/CadastroCliente");
+		
+		mv.addObject(cliente);
+		mv.addObject("tiposPessoa", TipoPessoa.values());
+		
+		return mv;
+	}
+	
+	@RequestMapping(value="{codigo}", method = RequestMethod.DELETE)
+	public String excluir(@PathVariable Long codigo, RedirectAttributes attributes) {
+		clientes.delete(codigo);
+		
+		attributes.addFlashAttribute("mensagem", "Cliente excluído com sucesso");
+		return "redirect:/clientes";
 	}
 	
 	@RequestMapping(consumes = { MediaType.APPLICATION_JSON_VALUE })

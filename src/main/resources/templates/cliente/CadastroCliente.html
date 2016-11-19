@@ -31,6 +31,8 @@
 			</div>	
 		</div>
 	</div>
+	
+	<div layout:include="mensagens/MensagemSucesso"></div>
 
 	<div class="container-fluid">
 		<form method="POST" th:object="${cliente}" class="form-vertical  js-form-loading" th:action="@{/clientes/novo}">
